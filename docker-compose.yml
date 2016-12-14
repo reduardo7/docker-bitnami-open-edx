@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+
+  edx:
+    build:
+      context: .
+    ports:
+      - "8000:80"

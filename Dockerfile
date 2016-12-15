@@ -38,23 +38,11 @@ RUN apt-get update && apt-get install -y mysql-server curl sudo
 RUN mkdir /setup-files
 WORKDIR /setup-files
 
-#ADD https://bitnami.com/redirect/to/129363/bitnami-edx-20160414-5-linux-x64-installer.run /setup-files/bitnami-edx-linux-x64-installer.run
-ADD bitnami-edx-20160414-5-linux-x64-installer.run /setup-files/bitnami-edx-linux-x64-installer.run
+ADD https://bitnami.com/redirect/to/129363/bitnami-edx-20160414-5-linux-x64-installer.run /setup-files/bitnami-edx-linux-x64-installer.run
+#ADD bitnami-edx-20160414-5-linux-x64-installer.run /setup-files/bitnami-edx-linux-x64-installer.run
 RUN chmod a+x bitnami-edx-linux-x64-installer.run
 
-RUN ./bitnami-edx-linux-x64-installer.run <<EOF
-${EDX_SETUP_DEMO_COURSES}
-y
-${EDX_SETUP_INSTALL_FOLDER}
-${EDX_SETUP_REAL_NAME}
-${EDX_SETUP_EMAIL}
-${EDX_SETUP_USER}
-${EDX_SETUP_PASSWORD}
-${EDX_SETUP_PASSWORD}
-${EDX_SETUP_EMAIL_SUPPORT}
-${EDX_SETUP_HOSTNAME}
-y
-EOF
+RUN echo "${EDX_SETUP_DEMO_COURSES}\ny\n${EDX_SETUP_INSTALL_FOLDER}\n${EDX_SETUP_REAL_NAME}\n${EDX_SETUP_EMAIL}\n${EDX_SETUP_USER}\n${EDX_SETUP_PASSWORD}\n${EDX_SETUP_PASSWORD}\n${EDX_SETUP_EMAIL_SUPPORT}\n${EDX_SETUP_HOSTNAME}\ny\n" | ./bitnami-edx-linux-x64-installer.run
 
 # Clean
 RUN apt-get autoremove -y

@@ -28,7 +28,7 @@ ENV EDX_SETUP_EMAIL_SUPPORT n
 
 # Hostname that will be used to create internal URLs. If this value is incorrect, 
 # you may be unable to access your Open edX installation from other computers.
-ENV EDX_SETUP_HOSTNAME 127.0.0.1
+ENV EDX_SETUP_HOSTNAME ''
 
 RUN echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASS}" | debconf-set-selections
 RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASS}" | debconf-set-selections

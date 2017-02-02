@@ -3,32 +3,32 @@ FROM ubuntu:16.04
 MAINTAINER Eduardo Daniel Cuomo <reduardo7@gmail.com> <eduardo.cuomo.ar@gmail.com>
 LABEL description="Open EDX Fullstack by Bitnami"
 
-ENV MYSQL_ROOT_PASS root
+ARG MYSQL_ROOT_PASS=root
 
 # Demo course for Open edX
-ENV EDX_SETUP_DEMO_COURSES 'n'
+ARG EDX_SETUP_DEMO_COURSES='n'
 
 # Installation folder
-ENV EDX_SETUP_INSTALL_FOLDER '/opt/bitnami'
+ARG EDX_SETUP_INSTALL_FOLDER='/opt/bitnami'
 
 # Your real name [User Name]
-ENV EDX_SETUP_REAL_NAME 'Admin User'
+ARG EDX_SETUP_REAL_NAME='Admin User'
 
 # Email Address
-ENV EDX_SETUP_EMAIL admin@edx.com
+ARG EDX_SETUP_EMAIL=admin@edx.com
 
 # Login [user]
-ENV EDX_SETUP_USER admin
+ARG EDX_SETUP_USER=admin
 
 # Password
-ENV EDX_SETUP_PASSWORD 123456
+ARG EDX_SETUP_PASSWORD=123456
 
 # eMail Support
-ENV EDX_SETUP_EMAIL_SUPPORT n
+ARG EDX_SETUP_EMAIL_SUPPORT=n
 
 # Hostname that will be used to create internal URLs. If this value is incorrect, 
 # you may be unable to access your Open edX installation from other computers.
-ENV EDX_SETUP_HOSTNAME ''
+ARG EDX_SETUP_HOSTNAME=''
 
 RUN echo "mysql-server mysql-server/root_password password ${MYSQL_ROOT_PASS}" | debconf-set-selections
 RUN echo "mysql-server mysql-server/root_password_again password ${MYSQL_ROOT_PASS}" | debconf-set-selections
@@ -48,5 +48,10 @@ RUN echo "${EDX_SETUP_DEMO_COURSES}\ny\n${EDX_SETUP_INSTALL_FOLDER}\n${EDX_SETUP
 RUN apt-get autoremove -y
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp /setup-files
 
+EXPOSE 80
+EXPOSE 8443
+
 # Command
-CMD /opt/bitnami/ctlscript.sh restart
+COPY start.sh /start.sh
+WORKDIR /
+CMD /start.sh

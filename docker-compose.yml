@@ -8,7 +8,7 @@ services:
       args:
         MYSQL_ROOT_PASS: "root"
         # Demo course for Open edX
-        EDX_SETUP_DEMO_COURSES: "n"
+        EDX_SETUP_DEMO_COURSES: "y"
         # Installation folder
         EDX_SETUP_INSTALL_FOLDER: "/opt/bitnami"
         # Your real name [User Name]
@@ -23,7 +23,7 @@ services:
         EDX_SETUP_EMAIL_SUPPORT: "n"
         # Hostname that will be used to create internal URLs. If this value is incorrect, 
         # you may be unable to access your Open edX installation from other computers.
-        EDX_SETUP_HOSTNAME: ""
+        EDX_SETUP_HOSTNAME: "79.137.44.177"
     hostname: open-edx
     container_name: open-edx
     ports:

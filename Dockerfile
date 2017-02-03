@@ -6,6 +6,7 @@ LABEL description="Open EDX Fullstack by Bitnami"
 ARG MYSQL_ROOT_PASS=root
 
 # Demo course for Open edX
+# @TODO: Setup script is not ready for 'y'
 ARG EDX_SETUP_DEMO_COURSES='n'
 
 # Installation folder

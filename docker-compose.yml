@@ -8,7 +8,7 @@ services:
       args:
         MYSQL_ROOT_PASS: "root"
         # Demo course for Open edX
-        EDX_SETUP_DEMO_COURSES: "y"
+        EDX_SETUP_DEMO_COURSES: "n"
         # Installation folder
         EDX_SETUP_INSTALL_FOLDER: "/opt/bitnami"
         # Your real name [User Name]
